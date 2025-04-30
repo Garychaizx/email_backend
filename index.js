@@ -31,9 +31,10 @@ app.post("/send-email", async (req, res) => {
 
     return res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
-    console.error("Failed to send email:", error.message);
+    console.error("EmailJS error response:", error.response?.data || error.message);
     return res.status(500).json({ error: "Failed to send email" });
   }
+  
 });
 
 app.listen(PORT, () => {
