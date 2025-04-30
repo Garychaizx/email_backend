@@ -8,8 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// POST route
-app.post("https://email-backend-o2n5.onrender.com/send-email", async (req, res) => {
+app.post("/send-email", async (req, res) => {
   const { caregiverEmail, medicationName, suggestedTime } = req.body;
 
   if (!caregiverEmail || !medicationName || !suggestedTime) {
@@ -20,9 +19,9 @@ app.post("https://email-backend-o2n5.onrender.com/send-email", async (req, res) 
 
   try {
     const response = await axios.post("https://api.emailjs.com/api/v1.0/email/send", {
-      service_id: "service_ggrl8rl", // Replace with your EmailJS Service ID
-      template_id: "template_mflj4wc", // Replace with your EmailJS Template ID
-      user_id: "ezPMMnwEBE9U4ypEH", // Replace with your EmailJS Public Key
+      service_id: "service_ggrl8rl",
+      template_id: "template_mflj4wc",
+      user_id: "ezPMMnwEBE9U4ypEH",
       template_params: {
         caregiver_email: caregiverEmail,
         medication_name: medicationName,
